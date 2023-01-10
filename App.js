@@ -5,12 +5,14 @@ import GoalItem from "./src/components/GoalItem";
 
 export default function App() {
   const [courseGoals, setCourseGoals] = useState([]);
+  const [modalIsVisible, setModalIsVisible] = useState(false);
 
   const addGoal = (enteredGoalText) => {
     setCourseGoals((currentCourseGoals) => [
       ...currentCourseGoals,
       { text: enteredGoalText, id: Math.random().toString() },
     ]);
+    endAddGoal();
   };
 
   const deleteGoal = (id) => {
@@ -20,9 +22,21 @@ export default function App() {
       });
     });
   };
+
+  const startAddGoal = () => {
+    setModalIsVisible(true);
+  };
+
+  const endAddGoal = () => {
+    setModalIsVisible(false);
+  };
   return (
     <View style={styles.container}>
-      <GoalInput addGoal={addGoal} />
+      <Button title="Add New Goal" color="#5e0acc" onPress={startAddGoal} />
+      {modalIsVisible && (
+        <GoalInput addGoal={addGoal} showModal={modalIsVisible} endAddGoal={endAddGoal}/>
+      )}
+
       <View style={styles.goalsContainer}>
         <FlatList
           data={courseGoals}
