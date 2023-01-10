@@ -1,7 +1,14 @@
-import { StyleSheet, TextInput, View, Button, Modal ,Image} from "react-native";
+import {
+  StyleSheet,
+  TextInput,
+  View,
+  Button,
+  Modal,
+  Image,
+} from "react-native";
 import { useState } from "react";
 
-const GoalInput = ({ addGoal, showModal,endAddGoal }) => {
+const GoalInput = ({ addGoal, showModal, endAddGoal }) => {
   const [enteredGoalText, setEnteredGoalText] = useState("");
 
   const goalInput = (enteredText) => {
@@ -11,7 +18,10 @@ const GoalInput = ({ addGoal, showModal,endAddGoal }) => {
   return (
     <Modal visible={showModal} animationType="slide">
       <View style={styles.inputContainer}>
-        <Image/>
+        <Image
+          source={require("../../assets/images/goal.png")}
+          style={styles.image}
+        />
         <TextInput
           style={styles.textInput}
           placeholder="Your course goal!"
@@ -19,10 +29,10 @@ const GoalInput = ({ addGoal, showModal,endAddGoal }) => {
         />
         <View style={styles.btnContainer}>
           <View style={styles.buttons}>
-            <Button title="Add Goal" onPress={() => addGoal(enteredGoalText)} />
+            <Button title="Add Goal" onPress={() => addGoal(enteredGoalText)} color="#b180f0"/>
           </View>
           <View style={styles.buttons}>
-            <Button title="Cancel" onPress={endAddGoal}/>
+            <Button title="Cancel" onPress={endAddGoal} color="#f31282" />
           </View>
         </View>
       </View>
@@ -38,15 +48,16 @@ const styles = StyleSheet.create({
     padding: 16,
     justifyContent: "center",
     alignItems: "center",
-    marginBottom: 24,
-    borderBottomWidth: 1,
-    borderBottomColor: "#cccccc",
+    backgroundColor: "#311b6b",
   },
   textInput: {
     borderWidth: 1,
-    borderColor: "#cccccc",
+    borderColor: "#e4d0ff",
     width: "100%",
-    padding: 8,
+    padding: 16,
+    backgroundColor:"#e4d0ff",
+    color:"#120438",
+    borderRadius:6
   },
   btnContainer: {
     marginTop: 16,
@@ -55,5 +66,10 @@ const styles = StyleSheet.create({
   buttons: {
     width: 100,
     marginHorizontal: 8,
+  },
+  image: {
+    width: 100,
+    height: 100,
+    margin: 20,
   },
 });
